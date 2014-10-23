@@ -13,12 +13,14 @@ def masky_cmap(orig_cmap, new_name=None, **kwargs):
     colors.LinearSegmentedColormap.  If it's a name, the
     LinearSegmentedColormap is created with cm.get_cmap().
     
-    ...But only the segmentdata from it is used.
+    Only the segmentdata from the LinearSegmentedColormap is used.
     
     The segmentdata must be based on functions rather than line
-    segments or color names.  Any alpha will be ignored.
+    segments or color names.  Any existing alpha will be ignored.
 
-    **kwargs are passed to colors.LinearSegmentedColormap.
+    **kwargs are passed to colors.LinearSegmentedColormap, but
+    otherwise ignored by this function.  In particular, gamma doesn't
+    affect the alpha calculations here.
 
     The new colors and alpha are based on the max of the original colors
     after clipping to 1.0:
@@ -26,9 +28,9 @@ def masky_cmap(orig_cmap, new_name=None, **kwargs):
     That means an image painted with the new Colormap, either by itself
     or painted on top of a black image, will look just like it would have.
     But painted on top of another image, the underlying image will show
-    through the dark parts of the colormapped image.
+    through the dark parts of the maksy_cmap image.
 
-    Returns a colors.LinearSegmentedColormap.
+    Returns a colors.LinearSegmentedColormap with the new r, g, b and a.
     """
     
     if not isinstance(orig_cmap, colors.Colormap):
