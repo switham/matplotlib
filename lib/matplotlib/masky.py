@@ -41,7 +41,7 @@ def masky_cmap(orig_cmap, new_name=None, **kwargs):
     if new_name == None:
         new_name = orig_cmap.name + "_masky"
 
-    # The LinearSegmentedColormap will be based on "segmentdata" that is
+    # The new LinearSegmentedColormap is based on "segmentdata" that is
     # a dictionary of four functions.  Those are four lambda expressions
     # below.  Each lambda expression calls masky_rgba().  Each call to
     # masky_rgba() calls all three of the functions from the original
