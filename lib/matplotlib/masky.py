@@ -80,5 +80,15 @@ def masky_cmap(orig_cmap, new_name=None, **kwargs):
         "alpha": lambda x: masky_rgba(x, 3),
         }, **kwargs)
         
-    
-    
+
+if __name__ == "__main__":
+    from numpy import arange
+    from matplotlib.cm import get_cmap
+    hotty = masky_cmap("afmhot")
+    afmhot = get_cmap("afmhot")
+    print 'x      afmhot(x)                 masky_cmap("afmhot")(x)'
+    print '         red green  blue alpha     red green  blue alpha'
+    for x in arange(0, 1.001, .125):
+        h = afmhot(x)
+        hm = hotty(x)
+        print "%5.3f (" % x +  " ".join("%5.3f" % v for v in h) + ") (" + " ".join("%5.3f" % v for v in hm) + ")"
